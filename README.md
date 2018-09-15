@@ -1,6 +1,10 @@
 # AdvancedWorkshopsFA18
 This is the repository which will contain the slides, notebooks, scripts and slides for the FA18 session of advanced workshops
-
+# Ubuntu Installation Instructions
+Run the command
+```
+sudo ./setup_ubuntu.sh
+```
 # Windows Installation Instructions
 <h2>Python/PIP</h2>
 
