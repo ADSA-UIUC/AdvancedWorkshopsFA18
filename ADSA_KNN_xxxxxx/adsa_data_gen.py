@@ -21,21 +21,32 @@ class data_gen:
 
     def create_data(self):
         """
-        Function to create the data, returns dictionary of format:
+        Function to create the data, returns tuple
+	At index 0 there is a dictionary of format:
         {
-            "ClassName": [Data] -> Python array with np arrays as elements
+            "[point1,point2...]": ClassName
             ...
         }
+	At index 1 there is a python array of np arrays
+	
         """
         ret = {}
         test_data = [[] for i in range(self.dimensions)]
         for key, data in self.kwargs.items():
             if len(data["Centres"]) == self.dimensions:
                 ret[key] = self.create_class(data)
-        for key, value in ret.items():
+	final_ret = {}
+        for key in ret.keys():
+		val = ret[key]
+		for i in range(len(val[0])):
+			cur_arr=[]
+			for j in range(self.dimensions):
+				cur_arr.append(val[j][i])
+			final_ret[tuple(cur_arr)]=key
+	for key, value in ret.items():
             for i in range(self.dimensions):
                 test_data[i].extend(value[i])
-        return ret,test_data
+        return final_ret,test_data
 
     def create_class(self, properties):
         """Helper to create classes using np"""
@@ -53,12 +64,12 @@ class data_gen:
 
 
 def main():
-    with open("../data_sets/data_set.json") as f:
+    with open("./data_sets/data_set.json") as f:
         data = json.load(f)
     d = data_gen(dimensions=3, kwargs=data)
     a = d.create_data()
     print(a)
-    with open("../data_sets/data_set.json") as f:
+    with open("./data_sets/data_set.json") as f:
         data = json.load(f)
 
 if __name__ == "__main__":
