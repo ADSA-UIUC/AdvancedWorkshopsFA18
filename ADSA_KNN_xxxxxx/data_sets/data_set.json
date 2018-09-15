@@ -1,0 +1,12 @@
+{
+    "Class1":{
+                "Centres": [10, 40, 30],
+                "BoundDistance": 15,
+                "Number": 10
+            },
+    "Class2":{
+                "Centres": [10, 20, 50],
+                "BoundDistance": 20,
+                "Number": 10
+            }
+}
