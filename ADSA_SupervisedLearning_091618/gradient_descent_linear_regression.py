@@ -80,7 +80,7 @@ class gradient_descent_linear_regression:
     
     return rmse, R2_accuracy
 
-data = pd.read_csv("https://s3.amazonaws.com/uiuc-adsa-fa18/student.csv")
+data = pd.read_csv("student.csv")
 
 # Ploting the scores as scatter plot
 fig = plt.figure()
