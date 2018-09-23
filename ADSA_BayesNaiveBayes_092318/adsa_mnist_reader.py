@@ -45,4 +45,4 @@ class reader:
                 test[digit[0]].append(cur_elem)
         return train, test
 
-reader()
+reader(45)

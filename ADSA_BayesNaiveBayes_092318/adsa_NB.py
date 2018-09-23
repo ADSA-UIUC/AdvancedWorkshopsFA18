@@ -54,6 +54,9 @@ class NB:
         P(x|y)
         for all x (0,0)->(28,28)
         for all y 1->10
+        train_data is a dictionary where the key is the digit (char)
+        and the value is an array of feature vectors
+        where each feature vector is of size 28*28
         """
         # Put your code here
 
@@ -88,6 +91,7 @@ class NB:
         and classify to whatever y makes this value max
         and return that y
         MAKE SURE TO UPDATE Conf Matrix and self.corr and self.wrong
+        arr is a feature vector of size 28*28
         """
         # Put your code here
         pass
@@ -99,6 +103,10 @@ class NB:
         calculate the value
         ln prior + sum_over_all_x(ln(p(x|y))
         and return this
+        cur_arr is a feature vector of size 28*28
+        prob_arr is array of probabilities you are checking over
+        this is alaso of size 28*28
+        digit is the digit you are classifying it as
         """
         # Put your code here
         pass
