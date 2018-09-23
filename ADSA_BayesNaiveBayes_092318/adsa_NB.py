@@ -48,31 +48,14 @@ class NB:
         self._print_heatmaps()
 
     def _calculate_probabilities(self, train_data, k):
-
-        # Calculate total number of training datapoints
-
-        total = 0
-        for i in train_data.keys():
-            total += len(train_data[i])
-
-        # Calculate prior probabilities for all classes
-        self.priors = [len(train_data[i])/total for i in train_data.keys()]
-
-        # Loop over all digits
-        for digit in range(10):
-            digit_list = train_data[str(digit)]
-            # Loop over all samples of the current digit
-            for cur_digit in digit_list:
-                # Loop over all features of current sample and count frequency
-                for cur_element in range(len(cur_digit)):
-                    self.probabilities[str(
-                        digit)][cur_element] += cur_digit[cur_element]
-            # Divide each element by the total number of samples
-            # for this digit  + a normalization factor to get the probability
-            for i in range(len(self.probabilities[str(digit)])):
-                p = (self.probabilities[str(digit)]
-                     [i]+k)/(len(digit_list)+(k*2))
-                self.probabilities[str(digit)][i] = p
+        """
+        To do:
+        Here you have to calculate the probability
+        P(x|y)
+        for all x (0,0)->(28,28)
+        for all y 1->10
+        """
+        # Put your code here
 
     def _print_heatmaps(self):
         for digit in range(10):
@@ -97,29 +80,28 @@ class NB:
                     self.wrong += 1
 
     def _classify(self, arr):
-        max_val = -9999999999
-        # Get the arg value for a sdigit with current sample
-        # and classfiy it as the max of all these values
-        for digit in range(10):
-            digit_probability = self.probabilities[str(digit)]
-            prob = self._get_cur_arg_value(
-                cur_arr=arr, prob_arr=digit_probability, digit=digit)
-            if prob > max_val:
-                max_val = prob
-                res = digit
-        return res
+        """
+        To do:
+        Given a digit sample in arr use the helper
+        function _get_cur_arg_value() to get the
+        value of the argument (ln prior + sum_over_all_x(ln(p(x|y))))
+        and classify to whatever y makes this value max
+        and return that y
+        MAKE SURE TO UPDATE Conf Matrix and self.corr and self.wrong
+        """
+        # Put your code here
+        pass
 
     def _get_cur_arg_value(self, cur_arr, prob_arr, digit):
-        # Loop through all samples and add the appropriate log of
-        # the probability P(0|y) or P(1|y)
-        prob = math.log(self.priors[digit])
-        for i in range(28):
-            for j in range(28):
-                if(cur_arr[i*28+j] == 0):
-                    prob += math.log(1-prob_arr[i*28+j])
-                else:
-                    prob += math.log(prob_arr[i*28+j])
-        return prob
+        """
+        To do:
+        Given a sample a probability array
+        calculate the value
+        ln prior + sum_over_all_x(ln(p(x|y))
+        and return this
+        """
+        # Put your code here
+        pass
 
 
 NB("./train_data.json", "./test_data.json")
